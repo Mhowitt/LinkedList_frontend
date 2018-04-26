@@ -7,6 +7,7 @@ import { authUser, loginUser } from "../store/actions/auth";
 import Homepage from "../components/Homepage";
 import AuthForm from "../components/AuthForm";
 import withAuth from "../hocs/withAuth";
+import JobList from "../components/JobList";
 
 const Main = props => {
   const { authUser, currentUser, errors, removeError, loginUser } = props;
@@ -18,7 +19,7 @@ const Main = props => {
           path="/signin"
           render={props => {
             if (currentUser.isAuthenticated) {
-              return <Redirect to="/" />;
+              return <Redirect to="/jobs" />;
             }
             return (
               <AuthForm
@@ -38,7 +39,7 @@ const Main = props => {
           path="/signup"
           render={props => {
             if (currentUser.isAuthenticated) {
-              return <Redirect to="/" />;
+              return <Redirect to="/jobs" />;
             }
             return (
               <AuthForm
@@ -56,6 +57,11 @@ const Main = props => {
         <Route
           path="/secret"
           component={withAuth(() => <h1>Secret Page!</h1>)}
+        />
+
+        <Route
+          path="/jobs"
+          component={withAuth(() => <JobList />)}
         />
 
         <Route
