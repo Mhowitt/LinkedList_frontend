@@ -1,19 +1,25 @@
 import React from "react";
 import styled from "styled-components";
+import ProfilePicture from "./ProfilePic";
 
 const StyledNav = styled.nav`
-  align-items: flex-start;
-  background-color: white;
-  border-radius: 10px;
-  filter: drop-shadow(0 0 0.25rem black);
+  display: flex;
+  justify-content: center;
+  background-color: rgb(29, 49, 58);
+  z-index: 0;
+
   flex-direction: column;
-  justify-content: flex-start;
-  padding: 10px;
-  width: ${props => props.width || "300px"};
+  align-content: center;
+  width: 100vw;
 `;
 
 const StyledNavBar = props => {
-  return <StyledNav>{props.children}</StyledNav>;
+  return (
+    <StyledNav>
+      {props.children}
+      <ProfilePicture />
+    </StyledNav>
+  );
 };
 
 export default StyledNavBar;

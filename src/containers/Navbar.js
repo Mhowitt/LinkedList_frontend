@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../store/actions/auth";
 import { logoutCompany } from "../store/actions/authCompany";
+import StyledNavBar from "../components/StyledNavBar";
+import StyledButton from "../components/StyledButton";
 
 class Navbar extends Component {
   logout = e => {
@@ -17,41 +19,34 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav>
-        {this.props.currentUser.isAuthenticated ? (
-          <ul>
-            <li>
+      <div>
+        <StyledNavBar>
+          {this.props.currentUser.isAuthenticated ? (
+            <StyledButton>
               <a href="/logout" onClick={this.logout}>
                 Log out
               </a>
-            </li>
-          </ul>
-        ) : (
-          <ul>
-            <li>
-              <Link to="/signin">User Log in</Link>
-            </li>
-            <li>
+            </StyledButton>
+          ) : (
+            <StyledButton>
+              <Link to="/signin"> User Log in </Link>
+            </StyledButton>
+          )}
+          {this.props.currentCompany.isAuthenticated ? (
+            <div>
+              <button>
+                <a href="/logout" onClick={this.logoutCompany}>
+                  Log out Company
+                </a>
+              </button>
+            </div>
+          ) : (
+            <button>
               <Link to="/companies/signin">Company Log in</Link>
-            </li>
-          </ul>
-        )}
-        {this.props.currentCompany.isAuthenticated ? (
-          <ul>
-            <li>
-              <a href="/logout" onClick={this.logoutCompany}>
-                Log out Company
-              </a>
-            </li>
-          </ul>
-        ) : (
-          <ul>
-            <li>
-              <Link to="/companies/signin">Company Log in</Link>
-            </li>
-          </ul>
-        )}
-      </nav>
+            </button>
+          )}
+        </StyledNavBar>
+      </div>
     );
   }
 }
