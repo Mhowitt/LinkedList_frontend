@@ -3,9 +3,11 @@ import { Provider } from "react-redux";
 import { configureStore } from "../store";
 import { BrowserRouter as Router } from "react-router-dom";
 import { setAuthorizationToken, setCurrentUser } from "../store/actions/auth";
+import { setCurrentCompany } from "../store/actions/authCompany";
 import Navbar from "./Navbar";
 import Main from "./Main";
 import jwtDecode from "jwt-decode";
+import CompanyMainContainer from "./CompanyMainContainer";
 
 const store = configureStore();
 
@@ -25,6 +27,7 @@ const App = () => (
       <div>
         <Navbar />
         <Main />
+        <CompanyMainContainer />
       </div>
     </Router>
   </Provider>

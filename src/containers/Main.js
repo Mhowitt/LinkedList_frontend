@@ -52,10 +52,12 @@ const Main = props => {
             );
           }}
         />
+
         <Route
           path="/secret"
           component={withAuth(() => <h1>Secret Page!</h1>)}
         />
+
         <Route
           exact
           path="/"
