@@ -21,6 +21,16 @@ if (localStorage.jwtToken) {
   }
 }
 
+if (localStorage.jwtToken) {
+  setAuthorizationToken(localStorage.jwtToken);
+  // prevent someone from manually setting a key of 'jwtToken' in localStorage
+  try {
+    store.dispatch(setCurrentCompany(jwtDecode(localStorage.jwtToken)));
+  } catch (e) {
+    store.dispatch(setCurrentCompany({}));
+  }
+}
+
 const App = () => (
   <Provider store={store}>
     <Router>
