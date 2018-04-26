@@ -6,6 +6,7 @@ import { removeError } from "../store/actions/errors";
 import { authCompany, loginCompany } from "../store/actions/authCompany";
 import CompanyHomepage from "../components/CompanyHomepage";
 import AuthFormCompany from "../components/AuthFormCompany";
+// import CompanyProfilePage from "../components/CompanyProfilePage";
 import withAuthCompany from "../hocs/withAuthCompany";
 
 const Main = props => {
@@ -58,7 +59,13 @@ const Main = props => {
             );
           }}
         />
-
+        {/* <Route
+          exact
+          path="/companies/:handle"
+          render={withAuthCompany(props => (
+            <CompanyProfilePage {...props} currentCompany={currentCompany} />
+          ))}
+        /> */}
         <Route
           path="/companies/secret"
           component={withAuthCompany(() => <h1>Secret Company Page!</h1>)}
