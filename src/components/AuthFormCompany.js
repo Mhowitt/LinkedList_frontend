@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Card from "./Card";
 
 class AuthFormCompany extends Component {
   constructor(props) {
@@ -46,66 +47,68 @@ class AuthFormCompany extends Component {
     });
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <h2>{heading}</h2>
-          {errors.message && <div>{errors.message}</div>}
-          <div>
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              name="username"
-              onChange={this.handleChange}
-              type="text"
-              value={username}
-            />
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              name="password"
-              onChange={this.handleChange}
-              type="password"
-              value={password}
-            />
-          </div>
-          {!signIn && (
+        <Card>
+          <form onSubmit={this.handleSubmit}>
+            <h2>{heading}</h2>
+            {errors.message && <div>{errors.message}</div>}
             <div>
-              <div>
-                <label htmlFor="email">E-mail</label>
-                <input
-                  autoComplete="off"
-                  id="email"
-                  name="email"
-                  onChange={this.handleChange}
-                  type="text"
-                  value={email}
-                />
-              </div>
-              <div>
-                <label htmlFor="firstName">First Name</label>
-                <input
-                  id="firstName"
-                  name="firstName"
-                  onChange={this.handleChange}
-                  type="text"
-                  value={firstName}
-                />
-              </div>
-              <div>
-                <label htmlFor="lastName">Last Name</label>
-                <input
-                  id="lastName"
-                  name="lastName"
-                  onChange={this.handleChange}
-                  type="text"
-                  value={lastName}
-                />
-              </div>
+              <label htmlFor="username">Username</label>
+              <input
+                id="username"
+                name="username"
+                onChange={this.handleChange}
+                type="text"
+                value={username}
+              />
             </div>
-          )}
-          <button type="submit">{buttonText}</button>
-        </form>
+            <div>
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                name="password"
+                onChange={this.handleChange}
+                type="password"
+                value={password}
+              />
+            </div>
+            {!signIn && (
+              <div>
+                <div>
+                  <label htmlFor="email">E-mail</label>
+                  <input
+                    autoComplete="off"
+                    id="email"
+                    name="email"
+                    onChange={this.handleChange}
+                    type="text"
+                    value={email}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="firstName">First Name</label>
+                  <input
+                    id="firstName"
+                    name="firstName"
+                    onChange={this.handleChange}
+                    type="text"
+                    value={firstName}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="lastName">Last Name</label>
+                  <input
+                    id="lastName"
+                    name="lastName"
+                    onChange={this.handleChange}
+                    type="text"
+                    value={lastName}
+                  />
+                </div>
+              </div>
+            )}
+            <button type="submit">{buttonText}</button>
+          </form>
+        </Card>
       </div>
     );
   }

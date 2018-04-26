@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const StyledDiv = styled.div`
   align-items: flex-start;
+
   background-color: white;
   border-radius: 10px;
   filter: drop-shadow(0 0 0.25rem black);
