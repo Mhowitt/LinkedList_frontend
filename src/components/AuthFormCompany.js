@@ -7,10 +7,10 @@ class AuthFormCompany extends Component {
     super(props);
     this.state = {
       email: "",
-      username: "",
       password: "",
-      firstName: "",
-      lastName: ""
+      handle: "",
+      name: "",
+      logo: ""
     };
   }
 
@@ -33,7 +33,7 @@ class AuthFormCompany extends Component {
   };
 
   render() {
-    const { email, username, password, firstName, lastName } = this.state;
+    const { email, password, handle, name, logo } = this.state;
     const {
       signIn,
       heading,
@@ -52,13 +52,13 @@ class AuthFormCompany extends Component {
             <h2>{heading}</h2>
             {errors.message && <div>{errors.message}</div>}
             <div>
-              <label htmlFor="username">Username</label>
+              <label htmlFor="handle">Company Handle</label>
               <input
-                id="username"
-                name="username"
+                id="handle"
+                name="handle"
                 onChange={this.handleChange}
                 type="text"
-                value={username}
+                value={handle}
               />
             </div>
             <div>
@@ -85,23 +85,23 @@ class AuthFormCompany extends Component {
                   />
                 </div>
                 <div>
-                  <label htmlFor="firstName">First Name</label>
+                  <label htmlFor="name">Company Name</label>
                   <input
-                    id="firstName"
-                    name="firstName"
+                    id="name"
+                    name="name"
                     onChange={this.handleChange}
                     type="text"
-                    value={firstName}
+                    value={name}
                   />
                 </div>
                 <div>
-                  <label htmlFor="lastName">Last Name</label>
+                  <label htmlFor="logo">Upload a company Logo</label>
                   <input
-                    id="lastName"
-                    name="lastName"
+                    id="logo"
+                    name="logo"
                     onChange={this.handleChange}
                     type="text"
-                    value={lastName}
+                    value={logo}
                   />
                 </div>
               </div>
