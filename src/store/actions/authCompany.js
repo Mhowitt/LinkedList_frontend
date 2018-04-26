@@ -51,7 +51,7 @@ export function loginCompany(type, data) {
   };
 }
 
-export function logout() {
+export function logoutCompany() {
   // we need to make this a thunk so that we can dispatch setCurrentUser
   return dispatch => {
     // clear the token from localStorage
