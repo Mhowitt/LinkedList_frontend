@@ -64,13 +64,13 @@ const CompanyMainContainer = props => {
         />
         <Route
           path="/companies/:handle"
-          component={withAuthCompany(() => (
+          render={props => (
             <CompanyProfile
               grabCompanyInfo={grabCompanyInfo}
               company={company}
               {...props}
             />
-          ))}
+          )}
         />
         <Route
           path="/companies/secret"

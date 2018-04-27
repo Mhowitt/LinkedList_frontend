@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 import { apiCall } from "../services/api";
+import withAuthCompany from "../hocs/withAuthCompany";
 
 class CompanyProfile extends Component {
   constructor(props) {
@@ -12,6 +13,10 @@ class CompanyProfile extends Component {
     let handle = this.props.match.params.handle;
     console.log("Here's the handle: " + handle);
     this.props.grabCompanyInfo(handle);
+  }
+
+  componentWillUnmount() {
+    console.log("we unmounted");
   }
 
   render() {
@@ -29,10 +34,10 @@ class CompanyProfile extends Component {
   }
 }
 
-CompanyProfile.propTypes = {
-  currentCompany: PropTypes.object,
-  grabCompanyInfo: PropTypes.function,
-  company: PropTypes.object
-};
+// CompanyProfile.propTypes = {
+//   currentCompany: PropTypes.object,
+//   grabCompanyInfo: PropTypes.function,
+//   company: PropTypes.object
+// };
 
-export default withRouter(CompanyProfile);
+export default withRouter(withAuthCompany(CompanyProfile));

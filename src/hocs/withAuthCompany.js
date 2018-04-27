@@ -8,6 +8,7 @@ export default function(ComponentToBeRendered) {
       if (!this.props.isAuthenticated) {
         this.props.history.push("/companies/signin");
       }
+      console.log("HERE IS WHERE WE ARE");
     }
 
     componentDidUpdate(prevProps) {
@@ -17,12 +18,6 @@ export default function(ComponentToBeRendered) {
     }
 
     render() {
-      console.log(
-        "AuthenticateCompany render=",
-        ComponentToBeRendered,
-        "cf=",
-        AuthenticateCompany
-      );
       return <ComponentToBeRendered {...this.props} />;
     }
   }

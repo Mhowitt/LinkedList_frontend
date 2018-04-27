@@ -66,9 +66,9 @@ const Main = props => {
 
         <Route
           path="/users/:username"
-          component={withAuth(() => (
+          render={props => (
             <User grabUserInfo={grabUserInfo} user={user} {...props} />
-          ))}
+          )}
         />
 
         <Route

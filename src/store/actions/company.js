@@ -8,7 +8,6 @@ export function grabCompanyInfo(handle) {
       let company = await apiCall("get", `/companies/${handle}`);
       dispatch(getCompany(company.data));
     } catch (err) {
-      dispatch(addError(err.message));
       return Promise.reject(err);
     }
   };
@@ -20,3 +19,5 @@ export function getCompany(company) {
     company
   };
 }
+
+// dispatch(addError(err.message));

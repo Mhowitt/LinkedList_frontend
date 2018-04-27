@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
 import { apiCall } from "../services/api";
+import withAuth from "../hocs/withAuth";
 
 class User extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class User extends Component {
   componentDidMount() {
     let username = this.props.match.params.username;
     this.props.grabUserInfo(username);
+    console.log("wtf");
   }
 
   render() {
@@ -26,4 +28,4 @@ class User extends Component {
   }
 }
 
-export default withRouter(User);
+export default withRouter(withAuth(User));
