@@ -1,30 +1,38 @@
-// const handle = this.props.params.handle;
-
-// getCompany(handle);
-
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { apiCall } from "../services/api";
 
-const CompanyProfile = ({ currentCompany, grabCompany, match, props }) => {
-  if (!currentCompany.isAuthenticated) {
+class CompanyProfile extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    let handle = this.props.match.params.handle;
+    console.log("Here's the handle: " + handle);
+    this.props.grabCompanyInfo(handle);
+  }
+
+  render() {
+    let { company } = this.props;
+    console.log("Here's the rendered" + company);
     return (
       <div>
-        <h1>Welcome to Linked List!</h1>
-        <Link to="/companies/signup">Sign up here</Link>
+        <h1>You (as a Company) are logged in! {company.name}</h1>
+
+        <p>{company.name}</p>
+        <p>{company.email}</p>
+        <p>{company.handle}</p>
       </div>
     );
   }
-  const companyHandle = props.match.params.handle;
-  console.log("CompanyProfile match.params=", props.match.params);
-
-  const foundCompany = grabCompany(companyHandle);
-  return <h1>You (as a Company) are logged in! {foundCompany.name}</h1>;
-};
+}
 
 CompanyProfile.propTypes = {
   currentCompany: PropTypes.object,
-  grabCompany: PropTypes.function
+  grabCompanyInfo: PropTypes.function,
+  company: PropTypes.object
 };
 
-export default CompanyProfile;
+export default withRouter(CompanyProfile);
