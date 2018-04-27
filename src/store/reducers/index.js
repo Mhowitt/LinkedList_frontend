@@ -4,13 +4,15 @@ import currentCompany from "./currentCompany";
 import companies from "./companies";
 import errors from "./errors";
 import jobList from "./jobList";
+import user from "./user";
 
 const rootReducer = combineReducers({
   currentUser,
   currentCompany,
   companies,
   errors,
-  jobList
+  jobList,
+  user
 });
 
 export default rootReducer;
