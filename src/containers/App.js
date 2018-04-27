@@ -14,22 +14,23 @@ const store = configureStore();
 if (localStorage.jwtToken) {
   setAuthorizationToken(localStorage.jwtToken);
   // prevent someone from manually setting a key of 'jwtToken' in localStorage
-  try {
-    store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
-  } catch (e) {
-    store.dispatch(setCurrentUser({}));
+  let decoded = jwtDecode(localStorage.jwtToken)
+  if (decoded.username) {
+    try {
+      store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+    } catch (e) {
+      store.dispatch(setCurrentUser({}));
+    }
+  }
+  if (decoded.handle) {
+    try {
+      store.dispatch(setCurrentCompany(jwtDecode(localStorage.jwtToken)));
+    } catch (e) {
+      store.dispatch(setCurrentCompany({}));
+    }
   }
 }
 
-if (localStorage.jwtToken) {
-  setAuthorizationToken(localStorage.jwtToken);
-  // prevent someone from manually setting a key of 'jwtToken' in localStorage
-  try {
-    store.dispatch(setCurrentCompany(jwtDecode(localStorage.jwtToken)));
-  } catch (e) {
-    store.dispatch(setCurrentCompany({}));
-  }
-}
 
 const App = () => (
   <Provider store={store}>

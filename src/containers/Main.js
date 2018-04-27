@@ -7,7 +7,7 @@ import { authUser, loginUser } from "../store/actions/auth";
 import Homepage from "../components/Homepage";
 import AuthForm from "../components/AuthForm";
 import withAuth from "../hocs/withAuth";
-import JobList from "../components/JobList";
+import JobList from "../containers/JobList";
 
 const Main = props => {
   const { authUser, currentUser, errors, removeError, loginUser } = props;
