@@ -17,6 +17,12 @@ export default function(ComponentToBeRendered) {
     }
 
     render() {
+      console.log(
+        "AuthenticateCompany render=",
+        ComponentToBeRendered,
+        "cf=",
+        AuthenticateCompany
+      );
       return <ComponentToBeRendered {...this.props} />;
     }
   }

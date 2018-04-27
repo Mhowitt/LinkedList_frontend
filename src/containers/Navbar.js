@@ -33,17 +33,15 @@ class Navbar extends Component {
             </StyledButton>
           )}
           {this.props.currentCompany.isAuthenticated ? (
-            <div>
-              <button>
-                <a href="/logout" onClick={this.logoutCompany}>
-                  Log out Company
-                </a>
-              </button>
-            </div>
+            <StyledButton>
+              <a href="/logout" onClick={this.logoutCompany}>
+                Log out Company
+              </a>
+            </StyledButton>
           ) : (
-            <button>
+            <StyledButton>
               <Link to="/companies/signin">Company Log in</Link>
-            </button>
+            </StyledButton>
           )}
         </StyledNavBar>
       </div>

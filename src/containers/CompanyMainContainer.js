@@ -4,19 +4,22 @@ import { connect } from "react-redux";
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { removeError } from "../store/actions/errors";
 import { authCompany, loginCompany } from "../store/actions/authCompany";
+import { grabCompany } from "../store/actions/companies";
 import CompanyHomepage from "../components/CompanyHomepage";
 import AuthFormCompany from "../components/AuthFormCompany";
-// import CompanyProfilePage from "../components/CompanyProfilePage";
+import CompanyProfile from "../components/CompanyProfile";
 import withAuthCompany from "../hocs/withAuthCompany";
 
 const Main = props => {
   const {
     authCompany,
     currentCompany,
+    grabCompany,
     errors,
     removeError,
     loginCompany
   } = props;
+  console.log("Main render props=", props);
   return (
     <div className="container">
       <Switch>
@@ -59,13 +62,17 @@ const Main = props => {
             );
           }}
         />
-        {/* <Route
+        <Route
           exact
           path="/companies/:handle"
-          render={withAuthCompany(props => (
-            <CompanyProfilePage {...props} currentCompany={currentCompany} />
+          component={withAuthCompany(() => (
+            <CompanyProfile
+              {...props}
+              currentCompany={currentCompany}
+              grabCompany={grabCompany}
+            />
           ))}
-        /> */}
+        />
         <Route
           path="/companies/secret"
           component={withAuthCompany(() => <h1>Secret Company Page!</h1>)}
@@ -86,6 +93,7 @@ const Main = props => {
 const mapStateToProps = state => {
   return {
     currentCompany: state.currentCompany,
+    getCompany: state.getCompany,
     errors: state.errors
   };
 };
@@ -96,12 +104,18 @@ Main.propTypes = {
   authCompany: PropTypes.func,
   loginCompany: PropTypes.func,
   currentCompany: PropTypes.object,
+  getCompany: PropTypes.object,
   removeError: PropTypes.func,
   errors: PropTypes.object
 };
 
 export default withRouter(
-  connect(mapStateToProps, { loginCompany, authCompany, removeError })(Main)
+  connect(mapStateToProps, {
+    loginCompany,
+    authCompany,
+    grabCompany,
+    removeError
+  })(Main)
 );
 
 // import React from "react";
