@@ -59,10 +59,7 @@ const Main = props => {
           component={withAuth(() => <h1>Secret Page!</h1>)}
         />
 
-        <Route
-          path="/jobs"
-          component={withAuth(() => <JobList />)}
-        />
+        <Route path="/jobs" component={withAuth(() => <JobList />)} />
 
         <Route
           exact
