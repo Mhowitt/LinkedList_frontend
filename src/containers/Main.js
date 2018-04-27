@@ -4,13 +4,15 @@ import { connect } from "react-redux";
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { removeError } from "../store/actions/errors";
 import { authUser, loginUser } from "../store/actions/auth";
+import { grabUserInfo } from "../store/actions/users";
 import Homepage from "../components/Homepage";
 import AuthForm from "../components/AuthForm";
 import withAuth from "../hocs/withAuth";
 import JobList from "../containers/JobList";
+import User from "../components/User";
 
 const Main = props => {
-  const { authUser, currentUser, errors, removeError, loginUser } = props;
+  const { authUser, currentUser, errors, removeError, loginUser, grabUserInfo, user } = props;
   return (
     <div className="container">
       <Switch>
@@ -55,6 +57,11 @@ const Main = props => {
         />
 
         <Route
+          path="/users/:username"
+          component={withAuth(() => <User grabUserInfo={grabUserInfo} user={user} {...props} />)}
+        />
+
+        <Route
           path="/secret"
           component={withAuth(() => <h1>Secret Page!</h1>)}
         />
@@ -74,7 +81,8 @@ const Main = props => {
 const mapStateToProps = state => {
   return {
     currentUser: state.currentUser,
-    errors: state.errors
+    errors: state.errors,
+    user: state.user
   };
 };
 
@@ -85,9 +93,10 @@ Main.propTypes = {
   loginUser: PropTypes.func,
   currentUser: PropTypes.object,
   removeError: PropTypes.func,
-  errors: PropTypes.object
+  errors: PropTypes.object,
+  user: PropTypes.object
 };
 
 export default withRouter(
-  connect(mapStateToProps, { loginUser, authUser, removeError })(Main)
+  connect(mapStateToProps, { loginUser, authUser, removeError, grabUserInfo })(Main)
 );
